@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Maven Build') {
       steps {
-        sh 'mvn tomcat7:redeploy'
+        sh 'mvn tomcat7:deploy'
       }
     }
   }
