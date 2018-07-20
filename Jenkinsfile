@@ -3,7 +3,11 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'ls'
+        sh '''<export PATH="$PATH:/home/ec2-user/node-v10.7.0-linux-x64/bin">
+npm install -g @angular/cli
+npm install @angular/animation@latest --save
+
+'''
       }
     }
     stage('mvn clean') {
