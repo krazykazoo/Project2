@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        build 'testjob'
+        sh 'npm install'
       }
     }
     stage('mvn clean') {
