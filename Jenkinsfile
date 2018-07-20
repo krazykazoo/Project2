@@ -4,7 +4,7 @@ pipeline {
     stage('ng build') {
       steps {
         sh 'pwd'
-        sh 'npm -v'
+        sh 'ls'
       }
     }
     stage('mvn clean') {
