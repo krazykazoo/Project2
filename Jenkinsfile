@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'npm -v'
+        sh 'ls'
         sh 'env'
       }
     }
