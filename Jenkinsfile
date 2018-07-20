@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 '''
-        sh 'pwd'
+        sh 'nvm install node'
       }
     }
     stage('mvn clean') {
