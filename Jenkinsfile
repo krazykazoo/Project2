@@ -3,14 +3,14 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'ls'
+        sh '''curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+'''
         sh 'pwd'
       }
     }
     stage('mvn clean') {
       steps {
         sh 'mvn clean package -DskipTests'
-        sh 'npm -v'
       }
     }
     stage('Maven Build') {
