@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh 'cd .'
         sh 'ls'
+        sh 'pwd'
       }
     }
     stage('mvn clean') {
