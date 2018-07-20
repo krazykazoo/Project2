@@ -4,10 +4,6 @@ pipeline {
     stage('ng build') {
       steps {
         build 'testjob'
-        sh 'yarn -version'
-        sh 'npm -version'
-        sh 'cd myProject'
-        sh 'yarn add ng-build -prod'
       }
     }
     stage('mvn clean') {
