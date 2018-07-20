@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh 'cd myProject'
         sh 'ng build -prod'
+        sh 'yarn install'
       }
     }
     stage('mvn clean') {
