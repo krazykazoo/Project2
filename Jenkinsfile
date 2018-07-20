@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'npm -version'
+        sh 'ls'
         sh 'pwd'
       }
     }
