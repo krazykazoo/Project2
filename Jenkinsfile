@@ -4,7 +4,7 @@ pipeline {
     stage('ng build') {
       steps {
         sh 'export PATH=$PATH:/home/ec2-user/node-v10.7.0-linux-x64/bin'
-        sh 'env'
+        sh 'cd myProject && ng -v'
       }
     }
     stage('mvn clean') {
