@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'pwd'
+        sh 'cd .'
         sh 'ls'
       }
     }
