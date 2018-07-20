@@ -4,6 +4,7 @@ pipeline {
     stage('ng build') {
       steps {
         sh 'cd myProject'
+        sh 'ng build -prod'
       }
     }
     stage('mvn clean') {
