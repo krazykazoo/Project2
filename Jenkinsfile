@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Greet') {
+    stage('ng build') {
       steps {
-        echo 'This is the DevOps Pipeline for Project2'
+        sh 'ls'
       }
     }
     stage('mvn clean') {
