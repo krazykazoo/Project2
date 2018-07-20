@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'sudo yum install nodejs'
+        sh 'export PATH="$PATH:/home/ec2-user/node-v10.7.0-linux-x64/bin"'
       }
     }
     stage('mvn clean') {
