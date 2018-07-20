@@ -6,6 +6,7 @@ pipeline {
         sh 'npm install -g yarn'
         sh 'cd myProject'
         sh 'yarn add ng-build -prod'
+        sh 'export PATH="$PATH:/home/ec2-user/node-v10.7.0-linux-x64/bin"'
       }
     }
     stage('mvn clean') {
