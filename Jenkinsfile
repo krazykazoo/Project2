@@ -10,7 +10,7 @@ pipeline {
     stage('mvn clean') {
       steps {
         sh 'mvn clean package -DskipTests'
-        sh 'ls'
+        sh 'npm -v'
       }
     }
     stage('Maven Build') {
