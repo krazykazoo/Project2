@@ -3,9 +3,9 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'cd myProject'
-        sh 'ng build -prod'
         sh 'yarn install'
+        sh 'cd myProject'
+        sh 'yarn add ng-build -prod'
       }
     }
     stage('mvn clean') {
