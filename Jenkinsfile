@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'npm install'
+        sh 'sudo yum install nodejs'
       }
     }
     stage('mvn clean') {
