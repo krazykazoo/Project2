@@ -4,9 +4,8 @@ pipeline {
     stage('ng build') {
       steps {
         sh '''export PATH=$PATH:/home/ec2-user/node-v10.7.0-linux-x64/bin
-ls
 cd myProject
-ls'''
+yarn -v'''
         sh 'npm install yarn && yarn -v'
       }
     }
