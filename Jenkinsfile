@@ -10,7 +10,7 @@ pipeline {
     stage('mvn clean') {
       steps {
         sh 'mvn clean package -DskipTests'
-        sh 'nvm -v'
+        sh 'sudo yum update'
       }
     }
     stage('Maven Build') {
