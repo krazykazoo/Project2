@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'cd myProject && yarn'
+        sh 'node -v'
         sh 'env'
       }
     }
