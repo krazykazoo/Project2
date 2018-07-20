@@ -5,7 +5,8 @@ pipeline {
       steps {
         sh '''export PATH=$PATH:/home/ec2-user/node-v10.7.0-linux-x64/bin
 cd myProject
-yarn add ng-build -prod --base-href /myapp/myProject/ '''
+yarn
+ng -version'''
         sh 'npm install yarn && yarn -v'
       }
     }
