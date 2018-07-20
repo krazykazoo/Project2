@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        sh 'npm -version'
+        sh 'ng -version'
         sh 'npm -version'
         sh 'cd myProject'
         sh 'yarn add ng-build -prod'
