@@ -1,8 +1,7 @@
-package com.revature.model.service;
+package com.revature.service;
 
 import com.revature.model.beans.User;
 import com.revature.model.dao.implementations.UserDaoImplHibernate;
-import com.revature.model.dao.interfaces.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
