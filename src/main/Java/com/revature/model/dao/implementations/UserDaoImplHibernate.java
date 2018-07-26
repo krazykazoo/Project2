@@ -21,7 +21,7 @@ public class UserDaoImplHibernate implements UserDao {
 
     @Override
     public User authenticate(String username, String password) {
-        String hql = "from User U where U.username=? and U.pass=?";
+        String hql = "from User U where U.username=? and U.password=?";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
         query.setString(1, username);
         query.setString(2, password);

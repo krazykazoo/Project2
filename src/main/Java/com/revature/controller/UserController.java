@@ -19,6 +19,11 @@ public class UserController {
 
     private UserServices userServices;
 
+    @GetMapping
+    public String test() {
+        return "Hey this should be at ec2:8080/myapp/api/users";
+    }
+
     @Autowired
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;
