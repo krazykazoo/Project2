@@ -7,10 +7,13 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Repository
 public class UserDaoImplHibernate implements UserDao {
     private SessionFactory sessionFactory;
 
@@ -21,10 +24,10 @@ public class UserDaoImplHibernate implements UserDao {
 
     @Override
     public User authenticate(String username, String password) {
-        String hql = "from User U where U.username=? and U.password=?";
+        String hql = "from User U where U.username=:uname and U.password=:pword";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setString(1, username);
-        query.setString(2, password);
+        query.setString("uname", username);
+        query.setString("pword", password);
         List result = query.list();
         if (result.isEmpty()) return null;
         return (User) result.get(0);
