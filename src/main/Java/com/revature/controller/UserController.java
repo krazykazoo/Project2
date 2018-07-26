@@ -31,16 +31,11 @@ public class UserController {
         if (user != null) {
             Cookie cookie = new Cookie("id", user.getId().toString());
             response.addCookie(cookie);
-            return new ResponseEntity<User>(user, HttpStatus.OK);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
         else {
-            try {
-                response.sendError(401);
-                return null;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
+            return new ResponseEntity<>((User) null, HttpStatus.UNAUTHORIZED);
+
         }
     }
 }
