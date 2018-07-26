@@ -26,6 +26,7 @@ public class UserController {
 
     @PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
     public ResponseEntity<User> authenticate(@RequestBody UserPass userPass, HttpServletResponse response) {
+
         User user = userServices.authenticate(userPass.getUsername(),userPass.getPassword());
         if (user != null) {
             Cookie cookie = new Cookie("id", user.getId().toString());
