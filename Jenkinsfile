@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('ng build') {
       steps {
-        build 'testjob'
+        echo 'this is where angular should be'
       }
     }
     stage('mvn clean') {
