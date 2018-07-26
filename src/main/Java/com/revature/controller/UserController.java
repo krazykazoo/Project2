@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(path="users")
+@RequestMapping(path="/users")
 public class UserController {
 
     private UserServices userServices;
