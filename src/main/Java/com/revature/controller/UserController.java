@@ -13,7 +13,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@RestController
+@Controller
+@ResponseBody
 @RequestMapping(path="/users")
 public class UserController {
 
