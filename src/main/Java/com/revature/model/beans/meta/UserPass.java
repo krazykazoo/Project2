@@ -1,6 +1,8 @@
 package com.revature.model.beans.meta;
 
+import org.springframework.context.annotation.Scope;
 
+@Scope("session")
 public class UserPass {
     private String username;
     private String password;
