@@ -64,7 +64,7 @@ public class UserDaoImplHibernate implements UserDao {
 
     public List<User> searchUsers(String search) {
         return (List<User>) sessionFactory.getCurrentSession()
-                .createQuery("from User U where U.firstName like '%:search%' or U.lastName like '%:search%'")
-                .setString("search", search).list();
+                .createQuery("from User U where U.firstName like :search or U.lastName like :search or U.username like :search")
+                .setString("search", "%"+search+"%").list();
     }
 }
