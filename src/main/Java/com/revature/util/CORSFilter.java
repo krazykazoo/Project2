@@ -24,11 +24,22 @@ public class CORSFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest)servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
 
+        //outer if is to avoid null pointer
+        if(req.getHeader("origin") != null) {
+            //authorize localhost:4200 (angular serve) to consume the content
+            if (req.getHeader("origin").equals("http://localhost:4200")) {
+                res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+                res.setHeader("Access-Control-Allow-Method", "OPTION GET POST PUT DELETE");
+                res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+                System.out.println("CORS filter received => access from localhost:4200");
+            }
+        }
+
         //authorize (allow) all domains to consume the content
         if(req.getMethod().equals("OPTION")) {
             res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Access-Control-Allow-Method", "OPTION GET POST PUT DELETE");
-            res.setHeader("Access-Control-Allow-Header", "Content-Type Authorization, Location");
+            res.setHeader("Access-Control-Allow-Headers", "Content-Type Authorization, Location");
             System.out.println("CORS request received");
         }
 
