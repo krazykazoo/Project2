@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class UserAuth {
 
-    @JsonProperty("email")
-    private String email;
+    @JsonProperty("username")
+    private String username;
 
     @JsonProperty("password")
     private String password;
@@ -15,17 +15,17 @@ public class UserAuth {
     public UserAuth() {
     }
 
-    public UserAuth(String email, String password) {
-        this.email = email;
+    public UserAuth(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -39,7 +39,7 @@ public class UserAuth {
     @Override
     public String toString() {
         return "UserAuth{" +
-                "username='" + email + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

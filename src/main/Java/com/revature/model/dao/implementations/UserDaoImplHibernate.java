@@ -22,10 +22,10 @@ public class UserDaoImplHibernate implements UserDao {
     }
 
     @Override
-    public User authenticate(String email, String password) {
-        String hql = "from User U where U.email=:email and U.password=:pword";
+    public User authenticate(String username, String password) {
+        String hql = "from User U where U.username=:username and U.password=:pword";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setString("email", email);
+        query.setString("username", username);
         query.setString("pword", password);
         List result = query.list();
         if (result.isEmpty()) return null;
@@ -60,5 +60,11 @@ public class UserDaoImplHibernate implements UserDao {
                 .createQuery("from Friend F where F.user =:userId")
                 .setInteger("userId", id)
                 .list();
+    }
+
+    public List<User> searchUsers(String search) {
+        return (List<User>) sessionFactory.getCurrentSession()
+                .createQuery("from User U where U.firstName like '%:search%' or U.lastName like '%:search%'")
+                .setString("search", search).list();
     }
 }
