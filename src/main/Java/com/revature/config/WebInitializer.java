@@ -14,8 +14,8 @@ public class WebInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         WebApplicationContext context = getContext();
-        servletContext.addListener(new ContextLoaderListener(context));
 
+        servletContext.addListener(new ContextLoaderListener(context));
 
         ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcherServlet", new DispatcherServlet(context));
 
