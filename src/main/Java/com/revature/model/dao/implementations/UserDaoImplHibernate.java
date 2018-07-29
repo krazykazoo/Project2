@@ -1,5 +1,6 @@
 package com.revature.model.dao.implementations;
 
+import com.revature.model.beans.Friend;
 import com.revature.model.beans.User;
 import com.revature.model.dao.interfaces.UserDao;
 import org.hibernate.Query;
@@ -21,10 +22,10 @@ public class UserDaoImplHibernate implements UserDao {
     }
 
     @Override
-    public User authenticate(String username, String password) {
-        String hql = "from User U where U.username=:uname and U.password=:pword";
+    public User authenticate(String email, String password) {
+        String hql = "from User U where U.email=:email and U.password=:pword";
         Query query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setString("uname", username);
+        query.setString("email", email);
         query.setString("pword", password);
         List result = query.list();
         if (result.isEmpty()) return null;
@@ -44,5 +45,20 @@ public class UserDaoImplHibernate implements UserDao {
     @Override
     public void delete(User user) {
         sessionFactory.getCurrentSession().delete(user);
+    }
+
+    public List<User> getAll() {
+        return (List<User>) sessionFactory.getCurrentSession().createQuery("from User").list();
+    }
+
+    public Integer addFriend(Friend friend) {
+        return (Integer) sessionFactory.getCurrentSession().save(friend);
+    }
+
+    public List<Friend> getFriends(Integer id) {
+        return (List<Friend>) sessionFactory.getCurrentSession()
+                .createQuery("from Friend F where F.user =:userId")
+                .setInteger("userId", id)
+                .list();
     }
 }

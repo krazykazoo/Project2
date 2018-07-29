@@ -1,9 +1,8 @@
 package com.revature.model.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name="users", schema="public")
@@ -11,21 +10,27 @@ public class User {
 
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name="username")
+    @JsonProperty("username")
     private String username;
 
     @Column(name="pass")
+    @JsonProperty("password")
     private String password;
 
     @Column(name="first_name")
+    @JsonProperty("firstName")
     private String firstName;
 
     @Column(name="last_name")
+    @JsonProperty("lastName")
     private String lastName;
 
     @Column(name="email")
+    @JsonProperty("email")
     private String email;
 
     public User() {

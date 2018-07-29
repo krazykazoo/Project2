@@ -4,28 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.context.annotation.Scope;
 
 @Scope("session")
-public class UserPass {
+public class UserAuth {
 
-    @JsonProperty("username")
-    private String username;
+    @JsonProperty("email")
+    private String email;
 
     @JsonProperty("password")
     private String password;
 
-    public UserPass() {
+    public UserAuth() {
     }
 
-    public UserPass(String username, String password) {
-        this.username = username;
+    public UserAuth(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -38,8 +38,8 @@ public class UserPass {
 
     @Override
     public String toString() {
-        return "UserPass{" +
-                "username='" + username + '\'' +
+        return "UserAuth{" +
+                "username='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

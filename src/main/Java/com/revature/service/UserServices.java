@@ -1,10 +1,13 @@
 package com.revature.service;
 
+import com.revature.model.beans.Friend;
 import com.revature.model.beans.User;
 import com.revature.model.dao.implementations.UserDaoImplHibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class UserServices {
@@ -14,6 +17,9 @@ public class UserServices {
     public void setDao(UserDaoImplHibernate dao) {
         this.dao = dao;
     }
+
+    @Transactional
+    public List<User> getAllUsers() { return dao.getAll();}
 
     @Transactional
     public User getUserById(Integer id) {
@@ -31,7 +37,17 @@ public class UserServices {
     }
 
     @Transactional
-    public User authenticate(String username, String password) {
-        return dao.authenticate(username, password);
+    public User authenticate(String email, String password) {
+        return dao.authenticate(email, password);
+    }
+
+    @Transactional
+    public List<Friend> getFriends(Integer id) {
+        return dao.getFriends(id);
+    }
+
+    @Transactional
+    public Integer addFriend(Friend friend) {
+        return dao.addFriend(friend);
     }
 }

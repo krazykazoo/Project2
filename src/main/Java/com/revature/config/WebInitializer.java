@@ -21,7 +21,7 @@ public class WebInitializer implements WebApplicationInitializer {
 
         //<load-on-startup>
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/api/*");
+        dispatcher.addMapping("/data/*");
     }
 
     private AnnotationConfigWebApplicationContext getContext() {
