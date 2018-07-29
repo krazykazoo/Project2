@@ -30,7 +30,7 @@ public class UserController {
     @PostMapping(path = "/login", consumes = "application/json", produces = "application/json")
     public ResponseEntity<User> authenticate(@RequestBody UserAuth userAuth, HttpServletResponse response) {
 
-        User user = userServices.authenticate(userAuth.getEmail(),userAuth.getPassword());
+        User user = userServices.authenticate(userAuth.getUsername(),userAuth.getPassword());
         if (user != null) {
             Cookie cookie = new Cookie("id", user.getId().toString());
             response.addCookie(cookie);
@@ -62,4 +62,8 @@ public class UserController {
         return new ResponseEntity<>(userServices.addFriend(friend), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/search")
+    public ResponseEntity<List<User>> searchUsers(@RequestParam("search") String search) {
+        return new ResponseEntity<>(userServices.searchUsers(search), HttpStatus.OK);
+    }
 }

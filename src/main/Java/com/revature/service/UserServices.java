@@ -37,8 +37,8 @@ public class UserServices {
     }
 
     @Transactional
-    public User authenticate(String email, String password) {
-        return dao.authenticate(email, password);
+    public User authenticate(String username, String password) {
+        return dao.authenticate(username, password);
     }
 
     @Transactional
@@ -50,4 +50,7 @@ public class UserServices {
     public Integer addFriend(Friend friend) {
         return dao.addFriend(friend);
     }
+
+    @Transactional
+    public List<User> searchUsers(String search) { return dao.searchUsers(search); }
 }
