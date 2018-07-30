@@ -56,8 +56,9 @@ public class UserDaoImplHibernate implements UserDao {
     }
 
     public List<Friend> getFriends(Integer id) {
+        // * SHOTDOC - updated query to return incoming friend requests as well *
         return (List<Friend>) sessionFactory.getCurrentSession()
-                .createQuery("from Friend F where F.user =:userId")
+                .createQuery("from Friend F where F.user =:userId or (F.friend =:userId and F.status = 1)")
                 .setInteger("userId", id)
                 .list();
     }
