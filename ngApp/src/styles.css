@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);
+
+body {
+    background-image: url("https://picsum.photos/1700/1000/?random");
+    height: 100vh;
+    font-family: 'Roboto Mono', sans-serif;
+}
+#wrapper {
+    height: 100%;
+    background-color: rgb(178, 204, 189, .25);
+
+}
+
