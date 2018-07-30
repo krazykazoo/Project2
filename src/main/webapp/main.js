@@ -348,7 +348,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <h2>Search users</h2>\n  <label>username:\n    <input #friendName />\n  </label>\n  <!-- click passes input value to add() (search() later)  and then clears the input -->\n  <button (click)=\"searchForUsername(friendName.value); friendName.value=''\">Search</button>\n  <div class=\"searchResults\">\n    <ul>\n      <li *ngFor=\"let result of searchResults\">\n        ID: {{result.id}} ----- Username: {{result.username}}\n        <button disabled *ngIf=\"isPending(result.id)\"  title=\"request sent\">request sent</button>\n        <!-- Didn't want to loop through isPending() again, created bool to reference -->\n        <button *ngIf=\"!_isPending\" (click)=\"sendFriendRequest(result.id)\" title=\"add friend\">add friend</button>\n\n      </li>\n    </ul>\n  </div>\n</div>"
+module.exports = "<div>\n  <h2>Search users</h2>\n  <label>username:\n    <input #friendName />\n  </label>\n  <!-- click passes input value to add() (search() later)  and then clears the input -->\n  <button (click)=\"searchForUsername(friendName.value); friendName.value=''\">Search</button>\n  <div class=\"searchResults\">\n    <ul>\n      <!-- doesn't write ng-container to the dom. only used for nested structural directive-->\n      <ng-container *ngFor=\"let result of searchResults\">\n        <li *ngIf=\"!isFriend(result.id)\">\n          ID: {{result.id}} ----- Username: {{result.username}}\n          <button disabled *ngIf=\"isPending(result.id)\"  title=\"request sent\">request sent</button>\n          <!-- Didn't want to loop through isPending() again, created bool to reference -->\n          <button *ngIf=\"!_isPending\" (click)=\"sendFriendRequest(result.id)\" title=\"add friend\">add friend</button>\n        </li>\n      </ng-container>\n    </ul>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -413,6 +413,19 @@ var AddFriendComponent = /** @class */ (function () {
         }
         return false;
     };
+    //checks pending friend requests to see if it exists
+    AddFriendComponent.prototype.isFriend = function (id) {
+        this._isFriend = false;
+        //loops through pending requests, returns true if pending
+        for (var _i = 0, _a = this.friends; _i < _a.length; _i++) {
+            var friend = _a[_i];
+            if (friend.friend === id) {
+                this._isFriend = true;
+                return true;
+            }
+        }
+        return false;
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", _classes_user__WEBPACK_IMPORTED_MODULE_2__["User"])
@@ -421,6 +434,10 @@ var AddFriendComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Array)
     ], AddFriendComponent.prototype, "pendingRequests", void 0);
+    __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
+        __metadata("design:type", Array)
+    ], AddFriendComponent.prototype, "friends", void 0);
     AddFriendComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-add-friend',
@@ -530,7 +547,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <button class=\"\"></button> -->\n<app-add-friend *ngIf=\"showAddFriend\" [user]=\"user\" [pendingRequests]=\"pendingRequests\"></app-add-friend>\n\n<!-- no way to close this 'show add friends' yet-->\n<button (click)=\"showAddFriend=true\" title=\"show add friends\">Add friends</button>\n\n<h2>Friend Requests</h2>\n<ul class=\"friendRequests\">\n  <li *ngFor=\"let fReq of friendRequests\">\n    Id: {{fReq.user}}\n    <button (click)=\"acceptRequest(fReq.id)\">accept</button>\n    <button (click)=\"denyRequest(fReq.id)\">deny</button>\n  </li>\n</ul>\n\n<h1>Friends</h1>\n<ul class=\"friends\">\n  <li *ngFor=\"let friend of friends\">\n    <!-- Username: {{friend.username}} -->\n    Id: {{friend.id}} ----- Username: {{friend.username}}\n  </li>\n</ul>\n"
+module.exports = "<!-- <button class=\"\"></button> -->\n<app-add-friend *ngIf=\"showAddFriend\" [friends]=\"friends\" [user]=\"user\" [pendingRequests]=\"pendingRequests\"></app-add-friend>\n\n<!-- no way to close this 'show add friends' yet-->\n<button (click)=\"showAddFriend=true\" title=\"show add friends\">Add friends</button>\n\n<h2>Friend Requests</h2>\n<ul class=\"friendRequests\">\n  <li *ngFor=\"let fReq of friendRequests\">\n    Id: {{fReq.user}}\n    <button (click)=\"acceptRequest(fReq.id)\">accept</button>\n    <button (click)=\"denyRequest(fReq.id)\">deny</button>\n  </li>\n</ul>\n\n<h1>Friends</h1>\n<ul class=\"friends\">\n  <li *ngFor=\"let friend of friends\">\n    <!-- Username: {{friend.username}} -->\n    Id: {{friend.friend}} ----- Username: {{friend.username}}\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -596,7 +613,6 @@ var FriendsComponent = /** @class */ (function () {
     FriendsComponent.prototype.getFriendRequests = function () {
         var _this = this;
         this.userService.getFriends(this.user.id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (requests) { return requests.filter(function (fReq) { return fReq.status === 1 && fReq.friend === _this.user.id; }); }) // filters for only status is 1 and is receiver of request
-        // switchMap(request => request.map(req => req.username = this.userService.getUserById(req['friend']).pipe(take(1),map(usr => { return usr['username'] }) ))))
         ).subscribe(function (friendRequests) {
             friendRequests.map(function (friendRequest) { return _this.userService.getUserById(friendRequest.user).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (usr) { return usr['username']; })).subscribe(function (username) { friendRequest.username = username; return friendRequest; }); });
             _this.friendRequests = friendRequests;
