@@ -72,4 +72,15 @@ public class UserController {
                                                        @RequestParam("friend") Integer friendId) {
         return new ResponseEntity<>(userServices.acceptFriendRequest(userId, friendId), HttpStatus.OK);
     }
+
+    @PutMapping(path = "/friends/reject")
+    public ResponseEntity<Integer> rejectFriendRequest(@RequestParam("user") Integer userId,
+                                                       @RequestParam("friend") Integer friendId) {
+        return new ResponseEntity<>(userServices.rejectFriendRequest(userId, friendId), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/user", produces = "application/json")
+    public ResponseEntity<User> getUser(@RequestParam("id") Integer id) {
+        return new ResponseEntity<>(userServices.getUserById(id), HttpStatus.OK);
+    }
 }

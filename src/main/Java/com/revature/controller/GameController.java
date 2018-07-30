@@ -3,16 +3,14 @@ package com.revature.controller;
 import com.revature.model.beans.Game;
 import com.revature.model.beans.GameGroup;
 import com.revature.model.beans.Prompt;
+import com.revature.model.beans.UserPrompt;
 import com.revature.service.GameServices;
 import com.revature.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -44,5 +42,20 @@ public class GameController {
     @GetMapping(path = "/game/prompt", produces = "application/json")
     public ResponseEntity<Prompt> getPrompt(@RequestParam("id") Integer id) {
         return new ResponseEntity<>(gameServices.getPrompt(id), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/game/submitResponse", consumes = "application/json")
+    public ResponseEntity<Integer> getPrompt(@RequestBody UserPrompt userPrompt) {
+        return new ResponseEntity<>(gameServices.submitResponse(userPrompt), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/game/userPrompt", produces = "application/json")
+    public ResponseEntity<UserPrompt> getUserPrompt(@RequestParam("gameId") Integer gameId) {
+        return new ResponseEntity<>(gameServices.getLastUserPrompt(gameId), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/game/create", consumes = "application/json")
+    public ResponseEntity<Game> createGame(@RequestBody List<Integer> users) {
+        return new ResponseEntity<>(gameServices.createGame(users), HttpStatus.OK);
     }
 }

@@ -65,9 +65,21 @@ public class UserServices {
         yourView.setStatus(2);
         myView.setStatus(2);
 
-        if (dao.saveFriend(myView) == 1 && dao.saveFriend(yourView) == 1) {
-            return 1;
-        } else return 0;
+        return 1;
+    }
+
+    @Transactional
+    public Integer rejectFriendRequest(Integer userId, Integer friendId) {
+        Friend myView = dao.getFriend(userId, friendId);
+        Friend yourView = dao.getFriend(friendId, userId);
+
+        yourView = initializeIfNeeded(friendId, userId, yourView);
+        myView = initializeIfNeeded(userId, friendId, myView);
+
+        yourView.setStatus(3);
+        myView.setStatus(3);
+
+        return 1;
 
     }
 

@@ -16,6 +16,9 @@ public class Game {
     @Column(name = "original_prompt_fk")
     private int originalPrompt;
 
+    @Column(name = "number_playing")
+    private int numberPlaying;
+
     public Game() {
     }
 
@@ -41,6 +44,14 @@ public class Game {
 
     public void setOriginalPrompt(int originalPrompt) {
         this.originalPrompt = originalPrompt;
+    }
+
+    public int getNumberPlaying() {
+        return numberPlaying;
+    }
+
+    public void setNumberPlaying(int numberPlaying) {
+        this.numberPlaying = numberPlaying;
     }
 
     @Override

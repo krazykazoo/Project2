@@ -2,6 +2,7 @@ package com.revature.model.dao.implementations;
 
 import com.revature.model.beans.Game;
 import com.revature.model.beans.GameGroup;
+import com.revature.model.beans.Prompt;
 import com.revature.model.dao.interfaces.BaseDao;
 import com.revature.model.dao.interfaces.GameDao;
 import org.hibernate.SessionFactory;
@@ -44,6 +45,17 @@ public class GameDaoImplHibernate implements GameDao {
                 .createQuery("from GameGroup G where G.userId =:user_id")
                 .setInteger("user_id", userId)
                 .list();
+    }
+
+    public Integer getRandomPrompt() {
+        Prompt prompt = (Prompt) sessionFactory.getCurrentSession()
+                .createQuery("from Prompt P order by random limit 1")
+                .list().get(0);
+        return prompt.getId();
+    }
+
+    public Integer saveGameGroup(GameGroup gameGroup) {
+        return (Integer) sessionFactory.getCurrentSession().save(gameGroup);
     }
 
 }
