@@ -1,0 +1,11 @@
+<h2>Test speed read</h2>
+<label>Enter phrase:
+  <input #phrase />
+</label>
+<!-- click passes input value to add() (search() later)  and then clears the input -->
+<button (click)="beginPhrase(phrase.value); phrase.value=''">Run</button>
+
+
+<div [innerHTML]="currentWord | sanitizeHtml" class="mono-roboto">
+
+</div>

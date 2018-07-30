@@ -1,0 +1,22 @@
+<!-- <button class=""></button> -->
+<app-add-friend *ngIf="showAddFriend" [user]="user" [pendingRequests]="pendingRequests"></app-add-friend>
+
+<!-- no way to close this 'show add friends' yet-->
+<button (click)="showAddFriend=true" title="show add friends">Add friends</button>
+
+<h2>Friend Requests</h2>
+<ul class="friendRequests">
+  <li *ngFor="let fReq of friendRequests">
+    Id: {{fReq.user}}
+    <button (click)="acceptRequest(fReq.id)">accept</button>
+    <button (click)="denyRequest(fReq.id)">deny</button>
+  </li>
+</ul>
+
+<h1>Friends</h1>
+<ul class="friends">
+  <li *ngFor="let friend of friends">
+    <!-- Username: {{friend.username}} -->
+    Id: {{friend.friend}} ----- Username: {{friend.username}}
+  </li>
+</ul>

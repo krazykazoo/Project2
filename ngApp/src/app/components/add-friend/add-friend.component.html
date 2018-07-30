@@ -1,0 +1,19 @@
+<div>
+  <h2>Search users</h2>
+  <label>username:
+    <input #friendName />
+  </label>
+  <!-- click passes input value to add() (search() later)  and then clears the input -->
+  <button (click)="searchForUsername(friendName.value); friendName.value=''">Search</button>
+  <div class="searchResults">
+    <ul>
+      <li *ngFor="let result of searchResults">
+        ID: {{result.id}} ----- Username: {{result.username}}
+        <button disabled *ngIf="isPending(result.id)"  title="request sent">request sent</button>
+        <!-- Didn't want to loop through isPending() again, created bool to reference -->
+        <button *ngIf="!_isPending" (click)="sendFriendRequest(result.id)" title="add friend">add friend</button>
+
+      </li>
+    </ul>
+  </div>
+</div>

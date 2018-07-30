@@ -1,0 +1,30 @@
+<nav>
+    <ul>
+      <li>
+                        <!-- will only add this class if '/' -->
+        <a routerLink="" [class.activated]="currentUrl == '/'">
+          Home
+        </a>
+      </li>
+      <li>
+          <a routerLink="dashboard" [class.activated]="currentUrl == '/dashboard'">
+            Dashboard
+          </a>
+      </li>
+      <li>
+          <a routerLink="games" [class.activated]="currentUrl == '/games'">
+            Games
+          </a>
+      </li>
+      <li>
+          <a routerLink="friends" [class.activated]="currentUrl == '/friends'">
+            Friends
+          </a>
+      </li>
+      <li>
+          <a href="" (click)="authService.logout()">
+            Logout
+          </a>
+      </li>
+    </ul>
+  </nav>
