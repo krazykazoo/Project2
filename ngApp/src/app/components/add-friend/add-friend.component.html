@@ -7,13 +7,15 @@
   <button (click)="searchForUsername(friendName.value); friendName.value=''">Search</button>
   <div class="searchResults">
     <ul>
-      <li *ngFor="let result of searchResults">
-        ID: {{result.id}} ----- Username: {{result.username}}
-        <button disabled *ngIf="isPending(result.id)"  title="request sent">request sent</button>
-        <!-- Didn't want to loop through isPending() again, created bool to reference -->
-        <button *ngIf="!_isPending" (click)="sendFriendRequest(result.id)" title="add friend">add friend</button>
-
-      </li>
+      <!-- doesn't write ng-container to the dom. only used for nested structural directive-->
+      <ng-container *ngFor="let result of searchResults">
+        <li *ngIf="!isFriend(result.id)">
+          ID: {{result.id}} ----- Username: {{result.username}}
+          <button disabled *ngIf="isPending(result.id)"  title="request sent">request sent</button>
+          <!-- Didn't want to loop through isPending() again, created bool to reference -->
+          <button *ngIf="!_isPending" (click)="sendFriendRequest(result.id)" title="add friend">add friend</button>
+        </li>
+      </ng-container>
     </ul>
   </div>
 </div>

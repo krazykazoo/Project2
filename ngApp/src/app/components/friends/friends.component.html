@@ -1,5 +1,5 @@
 <!-- <button class=""></button> -->
-<app-add-friend *ngIf="showAddFriend" [user]="user" [pendingRequests]="pendingRequests"></app-add-friend>
+<app-add-friend *ngIf="showAddFriend" [friends]="friends" [user]="user" [pendingRequests]="pendingRequests"></app-add-friend>
 
 <!-- no way to close this 'show add friends' yet-->
 <button (click)="showAddFriend=true" title="show add friends">Add friends</button>

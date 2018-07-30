@@ -54,7 +54,6 @@ export class FriendsComponent implements OnInit {
   getFriendRequests() : void {
     this.userService.getFriends(this.user.id).pipe(
       map(requests => requests.filter(fReq => fReq.status === 1 && fReq.friend === this.user.id))  // filters for only status is 1 and is receiver of request
-      // switchMap(request => request.map(req => req.username = this.userService.getUserById(req['friend']).pipe(take(1),map(usr => { return usr['username'] }) ))))
     ).subscribe(friendRequests => {
       friendRequests.map(friendRequest => this.userService.getUserById(friendRequest.user).pipe(map(usr => usr['username'])).subscribe(username => { friendRequest.username = username; return friendRequest; }));
       this.friendRequests = friendRequests});

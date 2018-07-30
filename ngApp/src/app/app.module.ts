@@ -23,14 +23,14 @@ import { AddFriendComponent } from './components/add-friend/add-friend.component
 
 import { SanitizeHtmlPipe } from './classes/sanitize-html-pipe.pipe';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyA3fg1DuXlXGN_76BKZXyC1JnMA2DZRp4Q",
-  authDomain: "project2-137a2.firebaseapp.com",
-  databaseURL: "https://project2-137a2.firebaseio.com",
-  projectId: "project2-137a2",
-  storageBucket: "",
-  messagingSenderId: "50528571639"
-}
+// export const firebaseConfig = {
+//   apiKey: "",
+//   authDomain: "",
+//   databaseURL: "",
+//   projectId: "",
+//   storageBucket: "",
+//   messagingSenderId: ""
+// }
 
 @NgModule({
   declarations: [
@@ -50,8 +50,8 @@ export const firebaseConfig = {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    // AngularFireModule.initializeApp(firebaseConfig),
+    // AngularFireAuthModule
   ],
   providers: [AuthService, UserService, GameService],
   bootstrap: [AppComponent]

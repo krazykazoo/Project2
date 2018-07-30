@@ -13,9 +13,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class AddFriendComponent implements OnInit {
   @Input() user: User;  //input() set from selector id
   @Input() pendingRequests: Friend[]; //input() set from selector id
+  @Input() friends: Friend[];
   searchResults: User[];
 
   _isPending: boolean;  //see model for this variable
+  _isFriend: boolean; 
 
   constructor(private userService: UserService) { }
 
@@ -53,5 +55,18 @@ export class AddFriendComponent implements OnInit {
     }
     return false;
   }
+
+    //checks pending friend requests to see if it exists
+    isFriend(id: number) : boolean {
+      this._isFriend = false;
+      //loops through pending requests, returns true if pending
+      for(let friend of this.friends) {
+        if(friend.friend === id) {
+          this._isFriend = true;
+          return true;
+        }
+      }
+      return false;
+    }
 
 }
