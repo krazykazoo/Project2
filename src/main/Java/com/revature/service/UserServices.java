@@ -53,4 +53,32 @@ public class UserServices {
 
     @Transactional
     public List<User> searchUsers(String search) { return dao.searchUsers(search); }
+
+    @Transactional
+    public Integer acceptFriendRequest(Integer userId, Integer friendId) {
+        Friend myView = dao.getFriend(userId, friendId);
+        Friend yourView = dao.getFriend(friendId, userId);
+
+        yourView = initializeIfNeeded(friendId, userId, yourView);
+        myView = initializeIfNeeded(userId, friendId, myView);
+
+        yourView.setStatus(2);
+        myView.setStatus(2);
+
+        if (dao.saveFriend(myView) == 1 && dao.saveFriend(yourView) == 1) {
+            return 1;
+        } else return 0;
+
+    }
+
+    private Friend initializeIfNeeded(Integer userId, Integer friendId, Friend view) {
+        if (view == null) {
+            view = new Friend();
+            view.setUser(userId);
+            view.setFriend(friendId);
+            view.setStatus(2);
+        }
+
+        return view;
+    }
 }

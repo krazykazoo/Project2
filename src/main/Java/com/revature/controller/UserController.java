@@ -66,4 +66,10 @@ public class UserController {
     public ResponseEntity<List<User>> searchUsers(@RequestParam("search") String search) {
         return new ResponseEntity<>(userServices.searchUsers(search), HttpStatus.OK);
     }
+
+    @PutMapping(path = "/friends/accept")
+    public ResponseEntity<Integer> acceptFriendRequest(@RequestParam("user") Integer userId,
+                                                       @RequestParam("friend") Integer friendId) {
+        return new ResponseEntity<>(userServices.acceptFriendRequest(userId, friendId), HttpStatus.OK);
+    }
 }

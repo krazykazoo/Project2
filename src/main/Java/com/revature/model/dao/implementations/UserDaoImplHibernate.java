@@ -68,4 +68,21 @@ public class UserDaoImplHibernate implements UserDao {
                 .createQuery("from User U where U.firstName like :search or U.lastName like :search or U.username like :search")
                 .setString("search", "%"+search+"%").list();
     }
+
+    public Friend getFriend(Integer userId, Integer friendId) {
+        List<Friend> list = (List<Friend>) sessionFactory.getCurrentSession()
+                .createQuery("from Friend F where F.user =:userId and F.friend =:friendId")
+                .setInteger("userId", userId).setInteger("friendId", friendId)
+                .list();
+        if (list.isEmpty()) {
+            return null;
+        }
+        else {
+            return list.get(0);
+        }
+    }
+
+    public Integer saveFriend(Friend friend) {
+        return (Integer) sessionFactory.getCurrentSession().save(friend);
+    }
 }
