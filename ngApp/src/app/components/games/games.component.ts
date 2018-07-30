@@ -20,7 +20,7 @@ export class GamesComponent implements OnInit {
 
     let wordArr = phrase.split(" ");
     let index = 0;
-    const interval = 50;
+    const interval = 240;
     let startInterval = setInterval(
       () => {
           let nextWord = wordArr[index++];

@@ -124,7 +124,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- nav bar here, but not on login???? -->\n<div style=\"padding: 25px\">\n  <app-main-nav></app-main-nav>\n</div>\n\n<div style=\"padding: 80px\">\n<router-outlet></router-outlet>\n</div>"
+module.exports = "<!-- nav bar here, but not on login???? -->\r\n<div style=\"padding: 25px\">\r\n  <app-main-nav></app-main-nav>\r\n</div>\r\n\r\n<div style=\"padding: 80px\">\r\n<router-outlet></router-outlet>\r\n</div>"
 
 /***/ }),
 
@@ -348,7 +348,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <h2>Search users</h2>\n  <label>username:\n    <input #friendName />\n  </label>\n  <!-- click passes input value to add() (search() later)  and then clears the input -->\n  <button (click)=\"searchForUsername(friendName.value); friendName.value=''\">Search</button>\n  <div class=\"searchResults\">\n    <ul>\n      <!-- doesn't write ng-container to the dom. only used for nested structural directive-->\n      <ng-container *ngFor=\"let result of searchResults\">\n        <li *ngIf=\"!isFriend(result.id)\">\n          ID: {{result.id}} ----- Username: {{result.username}}\n          <button disabled *ngIf=\"isPending(result.id)\"  title=\"request sent\">request sent</button>\n          <!-- Didn't want to loop through isPending() again, created bool to reference -->\n          <button *ngIf=\"!_isPending\" (click)=\"sendFriendRequest(result.id)\" title=\"add friend\">add friend</button>\n        </li>\n      </ng-container>\n    </ul>\n  </div>\n</div>"
+module.exports = "<div>\r\n  <h2>Search users</h2>\r\n  <label>username:\r\n    <input #friendName />\r\n  </label>\r\n  <!-- click passes input value to add() (search() later)  and then clears the input -->\r\n  <button (click)=\"searchForUsername(friendName.value); friendName.value=''\">Search</button>\r\n  <div class=\"searchResults\">\r\n    <ul>\r\n      <li *ngFor=\"let result of searchResults\">\r\n        ID: {{result.id}} ----- Username: {{result.username}}\r\n        <button disabled *ngIf=\"isPending(result.id)\"  title=\"request sent\">request sent</button>\r\n        <!-- Didn't want to loop through isPending() again, created bool to reference -->\r\n        <button *ngIf=\"!_isPending\" (click)=\"sendFriendRequest(result.id)\" title=\"add friend\">add friend</button>\r\n\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -413,19 +413,6 @@ var AddFriendComponent = /** @class */ (function () {
         }
         return false;
     };
-    //checks pending friend requests to see if it exists
-    AddFriendComponent.prototype.isFriend = function (id) {
-        this._isFriend = false;
-        //loops through pending requests, returns true if pending
-        for (var _i = 0, _a = this.friends; _i < _a.length; _i++) {
-            var friend = _a[_i];
-            if (friend.friend === id) {
-                this._isFriend = true;
-                return true;
-            }
-        }
-        return false;
-    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", _classes_user__WEBPACK_IMPORTED_MODULE_2__["User"])
@@ -434,10 +421,6 @@ var AddFriendComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Array)
     ], AddFriendComponent.prototype, "pendingRequests", void 0);
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
-        __metadata("design:type", Array)
-    ], AddFriendComponent.prototype, "friends", void 0);
     AddFriendComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-add-friend',
@@ -471,7 +454,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Games</h1>\n<ul class=\"games\">\n  <li *ngFor=\"let game of games\">\n    <a routerLink=\"/game/{{game.id}}\">\n      Game id - {{game.id}}\n    </a>\n  </li>\n</ul>\n"
+module.exports = "<h1>Games</h1>\r\n<ul class=\"games\">\r\n  <li *ngFor=\"let game of games\">\r\n    <a routerLink=\"/game/{{game.id}}\">\r\n      Game id - {{game.id}}\r\n    </a>\r\n  </li>\r\n</ul>\r\n"
 
 /***/ }),
 
@@ -547,7 +530,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <button class=\"\"></button> -->\n<app-add-friend *ngIf=\"showAddFriend\" [friends]=\"friends\" [user]=\"user\" [pendingRequests]=\"pendingRequests\"></app-add-friend>\n\n<!-- no way to close this 'show add friends' yet-->\n<button (click)=\"showAddFriend=true\" title=\"show add friends\">Add friends</button>\n\n<h2>Friend Requests</h2>\n<ul class=\"friendRequests\">\n  <li *ngFor=\"let fReq of friendRequests\">\n    Id: {{fReq.user}}\n    <button (click)=\"acceptRequest(fReq.id)\">accept</button>\n    <button (click)=\"denyRequest(fReq.id)\">deny</button>\n  </li>\n</ul>\n\n<h1>Friends</h1>\n<ul class=\"friends\">\n  <li *ngFor=\"let friend of friends\">\n    <!-- Username: {{friend.username}} -->\n    Id: {{friend.friend}} ----- Username: {{friend.username}}\n  </li>\n</ul>\n"
+module.exports = "<!-- <button class=\"\"></button> -->\r\n<app-add-friend *ngIf=\"showAddFriend\" [user]=\"user\" [pendingRequests]=\"pendingRequests\"></app-add-friend>\r\n\r\n<!-- no way to close this 'show add friends' yet-->\r\n<button (click)=\"showAddFriend=true\" title=\"show add friends\">Add friends</button>\r\n\r\n<h2>Friend Requests</h2>\r\n<ul class=\"friendRequests\">\r\n  <li *ngFor=\"let fReq of friendRequests\">\r\n    Id: {{fReq.user}}\r\n    <button (click)=\"acceptRequest(fReq.id)\">accept</button>\r\n    <button (click)=\"denyRequest(fReq.id)\">deny</button>\r\n  </li>\r\n</ul>\r\n\r\n<h1>Friends</h1>\r\n<ul class=\"friends\">\r\n  <li *ngFor=\"let friend of friends\">\r\n    <!-- Username: {{friend.username}} -->\r\n    Id: {{friend.friend}} ----- Username: {{friend.username}}\r\n  </li>\r\n</ul>\r\n"
 
 /***/ }),
 
@@ -613,6 +596,7 @@ var FriendsComponent = /** @class */ (function () {
     FriendsComponent.prototype.getFriendRequests = function () {
         var _this = this;
         this.userService.getFriends(this.user.id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (requests) { return requests.filter(function (fReq) { return fReq.status === 1 && fReq.friend === _this.user.id; }); }) // filters for only status is 1 and is receiver of request
+        // switchMap(request => request.map(req => req.username = this.userService.getUserById(req['friend']).pipe(take(1),map(usr => { return usr['username'] }) ))))
         ).subscribe(function (friendRequests) {
             friendRequests.map(function (friendRequest) { return _this.userService.getUserById(friendRequest.user).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (usr) { return usr['username']; })).subscribe(function (username) { friendRequest.username = username; return friendRequest; }); });
             _this.friendRequests = friendRequests;
@@ -655,7 +639,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  game works!\n</p>"
+module.exports = "<p>\r\n  game works!\r\n</p>"
 
 /***/ }),
 
@@ -707,7 +691,7 @@ var GameComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);\n\n.mono-roboto {\n    font-family: 'Roboto Mono', sans-serif;\n    font-size: 2em;\n}\n\n.red {\n    color: red !important;\n}\n"
+module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto+Mono);\r\n\r\n.mono-roboto {\r\n    font-family: 'Roboto Mono', sans-serif;\r\n    font-size: 2em;\r\n}\r\n\r\n.red {\r\n    color: red !important;\r\n}\r\n"
 
 /***/ }),
 
@@ -718,7 +702,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto+Mon
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Test speed read</h2>\n<label>Enter phrase:\n  <input #phrase />\n</label>\n<!-- click passes input value to add() (search() later)  and then clears the input -->\n<button (click)=\"beginPhrase(phrase.value); phrase.value=''\">Run</button>\n\n\n<div [innerHTML]=\"currentWord | sanitizeHtml\" class=\"mono-roboto\">\n\n</div>"
+module.exports = "<h2>Test speed read</h2>\r\n<label>Enter phrase:\r\n  <input #phrase />\r\n</label>\r\n<!-- click passes input value to add() (search() later)  and then clears the input -->\r\n<button (click)=\"beginPhrase(phrase.value); phrase.value=''\">Run</button>\r\n\r\n\r\n<div [innerHTML]=\"currentWord | sanitizeHtml\" class=\"mono-roboto\">\r\n\r\n</div>"
 
 /***/ }),
 
@@ -754,7 +738,7 @@ var GamesComponent = /** @class */ (function () {
         var _this = this;
         var wordArr = phrase.split(" ");
         var index = 0;
-        var interval = 50;
+        var interval = 240;
         var startInterval = setInterval(function () {
             var nextWord = wordArr[index++];
             var len = nextWord.length;
@@ -815,7 +799,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n                          <!-- on submit, confirms that form is valid and runs login func, \n                            also #f is naming the component instance to #f as an ngForm -->\n<form name=\"loginForm\" (ngSubmit)=\"f.form.valid && submitLogin(f)\" #f=\"ngForm\" novalidate>\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid}\">\n    <label for=\"username\">Username</label>\n    <input type=\"text\" class=\"form-control\" name=\"username\" (ngModel)=\"username\" #username=\"ngModel\" required />\n    <div *ngIf=\"f.submitted && !username.valid\" class=\"\">Username is required</div>\n  </div>\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid}\">\n    <label for=\"password\">Password</label>                                            \n    <input type=\"password\" class=\"form-control\" name=\"password\" (ngModel)=\"user.password\" #password=\"ngModel\" required />  <!-- here the #password is set to what ngModel is (which is model.password) -->\n    <div *ngIf=\"f.submitted && !password.valid\" class=\"\">Password is required</div>\n  </div>\n  <div class=\"form-group\">\n    <!-- disabled if property 'loading' is set to false in component -->\n    <button type=\"submit\" [disabled]=\"loading || f.form.invalid\" class=\"btn btn-primary\">Login</button>\n    <!-- gif symbol for loading :: only shows if 'loading' set to true -->\n    <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n    <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\n  </div>\n\n</form>"
+module.exports = "\r\n                          <!-- on submit, confirms that form is valid and runs login func, \r\n                            also #f is naming the component instance to #f as an ngForm -->\r\n<form name=\"loginForm\" (ngSubmit)=\"f.form.valid && submitLogin(f)\" #f=\"ngForm\" novalidate>\r\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid}\">\r\n    <label for=\"username\">Username</label>\r\n    <input type=\"text\" class=\"form-control\" name=\"username\" (ngModel)=\"username\" #username=\"ngModel\" required />\r\n    <div *ngIf=\"f.submitted && !username.valid\" class=\"\">Username is required</div>\r\n  </div>\r\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid}\">\r\n    <label for=\"password\">Password</label>                                            \r\n    <input type=\"password\" class=\"form-control\" name=\"password\" (ngModel)=\"user.password\" #password=\"ngModel\" required />  <!-- here the #password is set to what ngModel is (which is model.password) -->\r\n    <div *ngIf=\"f.submitted && !password.valid\" class=\"\">Password is required</div>\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <!-- disabled if property 'loading' is set to false in component -->\r\n    <button type=\"submit\" [disabled]=\"loading || f.form.invalid\" class=\"btn btn-primary\">Login</button>\r\n    <!-- gif symbol for loading :: only shows if 'loading' set to true -->\r\n    <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\r\n    <a [routerLink]=\"['/register']\" class=\"btn btn-link\">Register</a>\r\n  </div>\r\n\r\n</form>"
 
 /***/ }),
 
@@ -916,7 +900,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\n    <ul>\n      <li>\n                        <!-- will only add this class if '/' -->\n        <a routerLink=\"\" [class.activated]=\"currentUrl == '/'\">\n          Home\n        </a>\n      </li>\n      <li>\n          <a routerLink=\"dashboard\" [class.activated]=\"currentUrl == '/dashboard'\">\n            Dashboard\n          </a>\n      </li>\n      <li>\n          <a routerLink=\"games\" [class.activated]=\"currentUrl == '/games'\">\n            Games\n          </a>\n      </li>\n      <li>\n          <a routerLink=\"friends\" [class.activated]=\"currentUrl == '/friends'\">\n            Friends\n          </a>\n      </li>\n      <li>\n          <a href=\"\" (click)=\"authService.logout()\">\n            Logout\n          </a>\n      </li>\n    </ul>\n  </nav>"
+module.exports = "<nav>\r\n    <ul>\r\n      <li>\r\n                        <!-- will only add this class if '/' -->\r\n        <a routerLink=\"\" [class.activated]=\"currentUrl == '/'\">\r\n          Home\r\n        </a>\r\n      </li>\r\n      <li>\r\n          <a routerLink=\"dashboard\" [class.activated]=\"currentUrl == '/dashboard'\">\r\n            Dashboard\r\n          </a>\r\n      </li>\r\n      <li>\r\n          <a routerLink=\"games\" [class.activated]=\"currentUrl == '/games'\">\r\n            Games\r\n          </a>\r\n      </li>\r\n      <li>\r\n          <a routerLink=\"friends\" [class.activated]=\"currentUrl == '/friends'\">\r\n            Friends\r\n          </a>\r\n      </li>\r\n      <li>\r\n          <a href=\"\" (click)=\"authService.logout()\">\r\n            Logout\r\n          </a>\r\n      </li>\r\n    </ul>\r\n  </nav>"
 
 /***/ }),
 
@@ -988,7 +972,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form name=\"registerForm\" (ngSubmit)=\"f.form.valid && registerUser(f)\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid}\">\n      <label for=\"username\">Username</label>\n      <input type=\"username\"  class=\"form-control\" name=\"username\"  (ngModel)=\"username\" #username=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !username.valid\" class=\"\">Username is required or invalid form</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" (ngModel)=\"password\" #password=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"\">Password is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !firstName.valid }\">\n      <label for=\"firstName\">First Name</label>\n      <input type=\"text\" class=\"form-control\" name=\"firstName\" (ngModel)=\"firstName\" #firstName=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !firstName.valid\" class=\"\">First name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !lastName.valid }\">\n      <label for=\"lastName\">Last Name</label>\n      <input type=\"text\" class=\"form-control\" name=\"lastName\" (ngModel)=\"lastName\" #lastName=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !lastName.valid\" class=\"\">Last name is required</div>\n    </div>\n\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"f.form.invalid\" class=\"btn btn-primary\">Register</button>\n      <a [routerLink]=\"['']\" class=\"btn btn-link\">Go back</a>\n    </div>\n </form>"
+module.exports = "<form name=\"registerForm\" (ngSubmit)=\"f.form.valid && registerUser(f)\" #f=\"ngForm\" novalidate>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid}\">\r\n      <label for=\"username\">Username</label>\r\n      <input type=\"username\"  class=\"form-control\" name=\"username\"  (ngModel)=\"username\" #username=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !username.valid\" class=\"\">Username is required or invalid form</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n      <label for=\"password\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"password\" (ngModel)=\"password\" #password=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"\">Password is required</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !firstName.valid }\">\r\n      <label for=\"firstName\">First Name</label>\r\n      <input type=\"text\" class=\"form-control\" name=\"firstName\" (ngModel)=\"firstName\" #firstName=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !firstName.valid\" class=\"\">First name is required</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !lastName.valid }\">\r\n      <label for=\"lastName\">Last Name</label>\r\n      <input type=\"text\" class=\"form-control\" name=\"lastName\" (ngModel)=\"lastName\" #lastName=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !lastName.valid\" class=\"\">Last name is required</div>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n      <button type=\"submit\" [disabled]=\"f.form.invalid\" class=\"btn btn-primary\">Register</button>\r\n      <a [routerLink]=\"['']\" class=\"btn btn-link\">Go back</a>\r\n    </div>\r\n </form>"
 
 /***/ }),
 
@@ -1510,7 +1494,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/Shotdoc/IntelliJ Workspace/Angular/ngApp/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Work\Desktop\Revature Git\Project2\ngApp\src\main.ts */"./src/main.ts");
 
 
 /***/ })
