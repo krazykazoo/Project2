@@ -65,6 +65,9 @@ public class UserServices {
         yourView.setStatus(2);
         myView.setStatus(2);
 
+        dao.saveFriend(yourView);
+        dao.saveFriend(myView);
+
         return 1;
     }
 
@@ -78,6 +81,9 @@ public class UserServices {
 
         yourView.setStatus(3);
         myView.setStatus(3);
+
+        dao.saveFriend(yourView);
+        dao.saveFriend(myView);
 
         return 1;
 
