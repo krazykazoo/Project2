@@ -1,0 +1,22 @@
+ul li {
+    list-style: none;
+    display:  inline-block;
+    padding: 10px;
+}
+
+ul li a {
+    background-color: #177F43;
+    color: #b2ccbd;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+ul {
+    display: inline;
+    padding: 10px 0px;
+}
+
+nav {
+    background-color: #7EFFB4;
+    padding: 10px 0px;
+}
