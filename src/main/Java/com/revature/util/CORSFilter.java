@@ -29,16 +29,13 @@ public class CORSFilter implements Filter {
             //authorize localhost:4200 (angular serve) to consume the content
             if (req.getHeader("origin").equals("http://localhost:4200")) {
                 res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
-                res.setHeader("Access-Control-Allow-Method", "OPTION GET POST PUT DELETE");
+                res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
                 res.setHeader("Access-Control-Allow-Headers", "Content-Type");
                 System.out.println("CORS filter received => access from localhost:4200");
             }
-        }
-
-        //authorize (allow) all domains to consume the content
-        if(req.getMethod().equals("OPTION")) {
+        } else if(req.getMethod().equals("OPTION")) {           //authorize (allow) all domains to consume the content
             res.setHeader("Access-Control-Allow-Origin", "*");
-            res.setHeader("Access-Control-Allow-Method", "OPTION GET POST PUT DELETE");
+            res.setHeader("Access-Control-Allow-Methods", "OPTION GET POST PUT DELETE");
             res.setHeader("Access-Control-Allow-Headers", "Content-Type Authorization, Location");
             System.out.println("CORS request received");
         }
