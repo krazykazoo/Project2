@@ -81,7 +81,8 @@ public class GameServices {
             gameGroup.setUserId(userId);
             gameGroup.setPosition(position);
             position++;
-            dao.saveGameGroup(gameGroup);
+//            ** SHOTDOC -- switched this to setId() like above
+            gameGroup.setId(dao.saveGameGroup(gameGroup));
         }
 
         return game;

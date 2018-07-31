@@ -1,14 +1,12 @@
 package com.revature.model.beans;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="prompts")
 public class Prompt {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ** SHOTDOC - added generated value
     @Column
     private int id;
 

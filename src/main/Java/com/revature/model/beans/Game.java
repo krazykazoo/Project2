@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Game {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ** SHOTDOC - added generated value
     @Column
     private int id;
 

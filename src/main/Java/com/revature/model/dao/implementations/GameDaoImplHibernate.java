@@ -48,8 +48,11 @@ public class GameDaoImplHibernate implements GameDao {
     }
 
     public Integer getRandomPrompt() {
+//        ** SHOTDOC -- got rid of limit 1 and added setMaxResults(1))
+//        ---------------- also added rand()
         Prompt prompt = (Prompt) sessionFactory.getCurrentSession()
-                .createQuery("from Prompt P order by random limit 1")
+                .createQuery("from Prompt P order by rand()")
+                .setMaxResults(1)
                 .list().get(0);
         return prompt.getId();
     }

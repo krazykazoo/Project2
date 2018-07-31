@@ -8,6 +8,7 @@ import java.util.List;
 public class GameGroup {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // ** SHOTDOC - added generated value
     @Column(name="id")
     private int id;
 
