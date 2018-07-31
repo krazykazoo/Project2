@@ -1,0 +1,43 @@
+form {
+    width: 35%;
+    margin: 0 auto;
+    position: relative;
+}
+
+input {
+    margin: 10px 0px;
+    font-size: 1.25em;
+    background-color: #b2ccbd;
+}
+
+label {
+    font-size: 1.25em;
+    margin: 0px 10px;
+}
+
+div.form-group {
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+    align-content: center;
+}
+
+button {
+    width: 50%;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+    color: #b2ccbd;
+    background-color: #177F43;
+}
+
+a {
+    width: 50%;
+    height: 25px;
+    margin: 0 auto;
+    display: block;
+    text-decoration: none;
+    background-color: #177F43;
+    text-align: center;
+    color: #b2ccbd;
+}
