@@ -47,6 +47,13 @@ public class GameDaoImplHibernate implements GameDao {
                 .list();
     }
 
+    public List<GameGroup> getGameGroup(Integer gameId) {
+        return (List<GameGroup>)sessionFactory.getCurrentSession()
+                .createQuery("from GameGroup G where G.game =:game_id")
+                .setInteger("game_id", gameId)
+                .list();
+    }
+
     public Integer getRandomPrompt() {
 //        ** SHOTDOC -- got rid of limit 1 and added setMaxResults(1))
 //        ---------------- also added rand()

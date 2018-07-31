@@ -46,6 +46,11 @@ public class GameServices {
     }
 
     @Transactional
+    public List<GameGroup> getGameGroup(Integer gameId) {
+        return dao.getGameGroup(gameId);
+    }
+
+    @Transactional
     public Prompt getPrompt(Integer id) {
         return pdao.getById(id);
     }

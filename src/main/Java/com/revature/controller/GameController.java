@@ -39,6 +39,13 @@ public class GameController {
         return new ResponseEntity<>(games, HttpStatus.OK);
     }
 
+//    ** SHOTDOC -- added get mapping here AND methods in GameServices and GameDaoImpliHibernate
+    @GetMapping(path="/game/gameGroup", produces = "application/json")
+    public ResponseEntity<List<GameGroup>> getGameGroup(@RequestParam("id") Integer gameId) {
+        List<GameGroup> gameGroups = gameServices.getGameGroup(gameId);
+        return new ResponseEntity<>(gameGroups, HttpStatus.OK);
+    }
+
     @GetMapping(path = "/game/prompt", produces = "application/json")
     public ResponseEntity<Prompt> getPrompt(@RequestParam("id") Integer id) {
         return new ResponseEntity<>(gameServices.getPrompt(id), HttpStatus.OK);
